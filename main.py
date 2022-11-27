@@ -5,14 +5,10 @@
 
 
 def get_mcm(numbers):
-    print(numbers)
+    print("Numeros ingresados: ", numbers)
     mat_factores = []
-    factores_nocomunes = []
-    factores_comunes = []
 
     for item in numbers:
-        print(item)
-
         local_factor = descomponer(item)
         mat_factores.append(local_factor)
 
@@ -20,18 +16,20 @@ def get_mcm(numbers):
     for f in mat_factores:
         sum_mat += f
 
-    totales_factor = {factor: 0 for factor in set(sum_mat)}
+    totales_factor_mcm = {factor: 0 for factor in set(sum_mat)}
 
+#para mcm
     for item in mat_factores:
         repeticiones = {k: item.count(k) for k in set(item)}
 
         for key, value in repeticiones.items():
-            if value > totales_factor[key]:
-                totales_factor[key] = value
+            if value > totales_factor_mcm[key]:
+                totales_factor_mcm[key] = value
+#fin mcm
 
-    print(totales_factor)
+    print(totales_factor_mcm)
     mcm = 1
-    for key, value in totales_factor.items():
+    for key, value in totales_factor_mcm.items():
         mcm *= pow(key, value)
 
     print('El minimo comun multiplo es: ', mcm)
@@ -64,6 +62,5 @@ if __name__ == '__main__':
         if numbers.count() == 10:
             print("Has llegado al limite de numeros.")
             acumFlag = False
-
 
     get_mcm(numbers)
