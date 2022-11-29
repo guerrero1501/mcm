@@ -1,4 +1,6 @@
 # This is a sample Python script.
+from collections import Counter
+
 
 # Press Mayús+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
@@ -27,6 +29,11 @@ def get_mcm(numbers):
                 totales_factor_mcm[key] = value
 #fin mcm
 
+#para mcd
+    dupe_counter = Counter((n for a in mat_factores for n in a))
+    no_com = {num: count for num, count in dupe_counter.items() if count == len(mat_factores)}
+    print("no se repiten en todos los factores: ", no_com)
+    #fin mcd
     print(totales_factor_mcm)
     mcm = 1
     for key, value in totales_factor_mcm.items():
@@ -54,12 +61,12 @@ if __name__ == '__main__':
         numbers.append(int(numberClient))
         flag = input("Presiona cualquier tecla para continuar o (f) para finalizar\n")
         if flag == "f" or flag == "F":
-            if numbers.count() <= 1:
+            if len(numbers) <= 1:
                 print("debes escoger mas de 1 numero.")
             else:
                 acumFlag = False
 
-        if numbers.count() == 10:
+        if len(numbers) == 10:
             print("Has llegado al limite de numeros.")
             acumFlag = False
 
